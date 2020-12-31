@@ -30,7 +30,6 @@ namespace FakeXrmEasy.CodeActivities
                 PostEntityImages = new EntityImageCollection()
             };
         }
-
         public static IDictionary<string, object> ExecuteCodeActivity<T>(this IXrmFakedContext context, Dictionary<string, object> inputs, T instance = null)
             where T : CodeActivity, new()
         {
