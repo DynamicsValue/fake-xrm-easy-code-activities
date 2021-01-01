@@ -42,7 +42,7 @@ jobs:
         NUGET_TOKEN: ${{ secrets.PACKAGES_TOKEN }} 
 
   sonar:
-    needs: build-netcore
+    needs: build-windows
     runs-on: ubuntu-latest
     
     steps:
