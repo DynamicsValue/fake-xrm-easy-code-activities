@@ -13,34 +13,6 @@ env:
   source-url: "https://nuget.pkg.github.com/${{github.repository_owner}}/index.json"
 
 jobs:
-  build-netcore:
-    strategy:
-      fail-fast: false 
-      matrix: 
-        os: [ubuntu-latest, macos-latest]
-    
-    runs-on: ${{matrix.os}} 
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Setup .NET Core for Actual Source
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: ${{ env.dotnet-version }}
- 
-    - name: Disable local packages feed
-      run: dotnet nuget disable source "local-packages"
-
-    - name: Enable GitHub packages feed
-      run: dotnet nuget enable source github
-      
-    - name: Build
-      run: pwsh ./build.ps1
-      env: 
-        NUGET_USERNAME: DynamicsValue
-        NUGET_TOKEN: ${{ secrets.PACKAGES_TOKEN }} 
-  
   build-windows:
     strategy:
       fail-fast: false 
