@@ -6,7 +6,7 @@ param (
 
 Write-Host "Scanning..."
 
-dotnet tool install --global dotnet-sonarscanner
+dotnet tool install dotnet-sonarscanner --tool-path . --version 4.7.1
 if(!($LASTEXITCODE -eq 0)) {
     throw "Error installing sonar scanner"
 }
