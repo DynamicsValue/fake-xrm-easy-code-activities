@@ -13,7 +13,7 @@ if(!($LASTEXITCODE -eq 0)) {
     throw "Error installing sonar scanner"
 }
 
-dotnet sonarscanner begin /key:$sonarProjectKey /name:$sonarProjectName /o:$sonarOrganisation /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login=$sonarLogin /d:sonar.verbose="true" /d:sonar.qualitygate.wait="true" /d:sonar.cs.opencover.reportsPaths="coverage/**/coverage.opencover.xml" /d:sonar.coverage.exclusions="tests/**/**"
+dotnet sonarscanner begin /key:"$($sonarProjectKey)" /name:"$($sonarProjectName)" /o:"$($sonarOrganisation)" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="$($sonarLogin)" /d:sonar.verbose="true" /d:sonar.qualitygate.wait="true" /d:sonar.cs.opencover.reportsPaths="coverage/**/coverage.opencover.xml" /d:sonar.coverage.exclusions="tests/**/**"
 if(!($LASTEXITCODE -eq 0)) {
     throw "Error at sonar scan: begin"
 }
@@ -27,7 +27,7 @@ if(!($LASTEXITCODE -eq 0)) {
     throw "Error while running test step"
 }
 
-dotnet sonarscanner end /d:sonar.login=$sonarLogin
+dotnet sonarscanner end /d:sonar.login="$($sonarLogin)"
 if(!($LASTEXITCODE -eq 0)) {
     throw "Error at sonar scan: end"
 }

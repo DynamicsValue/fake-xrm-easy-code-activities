@@ -60,7 +60,7 @@ jobs:
       run: dotnet nuget enable source github 
 
     - name: Quality Gate
-      run: pwsh ./sonar-scan.ps1 -sonarProjectName 'fake-xrm-easy-code-activities' -sonarProjectKey ${{ secrets.SONAR_PROJECT_KEY }} -sonarLogin ${{ secrets.SONAR_TOKEN }} -sonarOrganisation 'DynamicsValue'
+      run: pwsh ./sonar-scan.ps1 -sonarProjectName "fake-xrm-easy-code-activities" -sonarProjectKey ${{ secrets.SONAR_PROJECT_KEY }} -sonarLogin ${{ secrets.SONAR_TOKEN }} -sonarOrganisation "DynamicsValue"
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NUGET_USERNAME: DynamicsValue
