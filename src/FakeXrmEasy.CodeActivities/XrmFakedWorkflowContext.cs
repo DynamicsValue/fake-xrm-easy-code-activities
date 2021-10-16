@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Workflow;
-
 using System;
 
 namespace FakeXrmEasy.CodeActivities
