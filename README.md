@@ -5,6 +5,7 @@
 --------------------------------------------------
 This repo contains the source code for the FakeXrmEasy.CodeActivities package.
 
+**NOTE: This is a Windows ONLY package as System.Activities was not ported to .net core.**
 
 |Build|Quality Gate|Coverage|Security|Maintainability|Reliability|
 |-----| ---------- | ------ | ------ | ------------- | --------- |
@@ -25,7 +26,6 @@ Please see main [FakeXrmEasy's Installing section on README file](https://github
 ----------------------------------------------------------
 Please see main [FakeXrmEasy's Bulding section on README file](https://github.com/DynamicsValue/fake-xrm-easy#readme).
 
-**NOTE: This is a Windows ONLY package as System.Activities was not ported to .net core.**
 
 ## Contributing
 ------------------------
