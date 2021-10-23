@@ -36,7 +36,7 @@ jobs:
       run: dotnet nuget enable source github
       
     - name: Build
-      run: pwsh ./build.ps1 -configuration ${{matrix.configuration}} -targetFramework 'all'
+      run: pwsh ./build.ps1 -configuration ${{matrix.configuration}} -targetFrameworks 'all'
       env: 
         NUGET_USERNAME: DynamicsValue
         NUGET_TOKEN: ${{ secrets.PACKAGES_TOKEN }} 
@@ -60,21 +60,9 @@ jobs:
       run: dotnet nuget enable source github 
 
     - name: Quality Gate
-      uses: DynamicsValue/dotnet-sonarscanner@v2.3
-      with:
-        buildCommand: dotnet build . --configuration FAKE_XRM_EASY_9 --framework netcoreapp3.1
-        testCommand: dotnet test . --configuration FAKE_XRM_EASY_9 --framework netcoreapp3.1 --verbosity normal --collect:"XPlat code coverage" --settings tests/.runsettings --results-directory ./coverage
-        projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
-        projectName: fake-xrm-easy-code-activities
-        sonarOrganisation: dynamicsvalue
-        beginArguments: >
-            /d:sonar.verbose="true"
-            /d:sonar.qualitygate.wait="true"
-            /d:sonar.cs.opencover.reportsPaths='"coverage/**/coverage.opencover.xml"'
-            /d:sonar.coverage.exclusions='"tests/**/**"'
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+      run: pwsh ./sonar-scan.ps1 -sonarProjectName "fake-xrm-easy-code-activities" -sonarProjectKey ${{ secrets.SONAR_PROJECT_KEY }} -sonarLogin ${{ secrets.SONAR_TOKEN }} -sonarOrganisation "dynamicsvalue"
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NUGET_USERNAME: DynamicsValue
-        NUGET_TOKEN: ${{ secrets.PACKAGES_TOKEN }} 
+        NUGET_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
 
