@@ -22,13 +22,13 @@ namespace FakeXrmEasy.CodeActivities.Tests
 
             var result = _context.ExecuteCodeActivity<AddActivity>(inputs);
 
-            Assert.True(((int)result["result"]).Equals(5));
+            Assert.Equal(5, (int)result["result"]);
         }
 
         [Fact]
         public void When_the_create_task_activity_is_executed_a_task_is_created_in_the_context()
         {
-            (_context as XrmFakedContext).ProxyTypesAssembly = Assembly.GetExecutingAssembly();
+            _context.EnableProxyTypes(Assembly.GetExecutingAssembly());
 
             var guid1 = Guid.NewGuid();
             var account = new Account() { Id = guid1 };
@@ -62,24 +62,20 @@ namespace FakeXrmEasy.CodeActivities.Tests
         [Fact]
         public void When_the_add_activity_with_constant_is_executed_without_a_specific_instance_result_is_the_two_summands()
         {
-            var fakedContext = new XrmFakedContext();
-
             //Inputs
             var inputs = new Dictionary<string, object>() {
                 { "firstSummand", 2 },
                 { "secondSummand", 3 }
             };
 
-            var result = fakedContext.ExecuteCodeActivity<AddActivityWithConstant>(inputs);
+            var result = _context.ExecuteCodeActivity<AddActivityWithConstant>(inputs);
 
-            Assert.True(((int)result["result"]).Equals(5));
+            Assert.Equal(5, (int)result["result"]);
         }
 
         [Fact]
         public void When_the_add_activity_with_constant_is_executed_with_a_specific_instance_result_is_the_two_summands_plus_constant()
         {
-            var fakedContext = new XrmFakedContext();
-
             //Inputs
             var inputs = new Dictionary<string, object>() {
                 { "firstSummand", 2 },
@@ -89,16 +85,15 @@ namespace FakeXrmEasy.CodeActivities.Tests
             AddActivityWithConstant codeActivity = new AddActivityWithConstant();
             codeActivity.Constant = 69;
 
-            var result = fakedContext.ExecuteCodeActivity<AddActivityWithConstant>(inputs, codeActivity);
+            var result = _context.ExecuteCodeActivity<AddActivityWithConstant>(inputs, codeActivity);
 
-            Assert.True(((int)result["result"]).Equals(5 + 69));
+            Assert.Equal(5 + 69, (int)result["result"]);
         }
 
         [Fact]
         public void When_passing_a_custom_workflow_activity_context_injected_property_is_returned()
         {
-            var fakedContext = new XrmFakedContext();
-            var wfContext = fakedContext.GetDefaultWorkflowContext();
+            var wfContext = _context.GetDefaultWorkflowContext();
             wfContext.MessageName = "Update";
 
             //Inputs
@@ -106,9 +101,9 @@ namespace FakeXrmEasy.CodeActivities.Tests
 
             CheckContextPropertyActivity codeActivity = new CheckContextPropertyActivity();
 
-            var result = fakedContext.ExecuteCodeActivity<CheckContextPropertyActivity>(wfContext, inputs, codeActivity);
+            var result = _context.ExecuteCodeActivity<CheckContextPropertyActivity>(wfContext, inputs, codeActivity);
 
-            Assert.True(((string)result["MessageName"]).Equals("Update"));
+            Assert.Equal("Update", (string)result["MessageName"]);
         }
     }
 }

@@ -8,6 +8,9 @@ using System.Collections.Generic;
 
 namespace FakeXrmEasy.CodeActivities
 {
+    /// <summary>
+    /// Adds extensions to execute code activities against a IXrmFakedContext
+    /// </summary>
     public static class IXrmFakedContextCodeActivitiesExtensions
     {
         public static XrmFakedWorkflowContext GetDefaultWorkflowContext(this IXrmFakedContext context)
