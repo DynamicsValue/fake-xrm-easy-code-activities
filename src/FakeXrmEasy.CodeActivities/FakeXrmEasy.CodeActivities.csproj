@@ -12,11 +12,11 @@
     <Authors>Jordi Montaña</Authors>
     <Company>Dynamics Value</Company>
     <Title>FakeXrmEasy CodeActivities</Title>
-    <PackageDescription>FakeXrmEasy is the open source test automation framework for .net core and the Power Platform. This is an abstractions package containing only interfaces</PackageDescription>
     <Copyright>(c) 2021 DynamicsValue S.L.</Copyright>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageIcon>FakeXrmEasyLogo_128x128.png</PackageIcon>
+    <PackageReleaseNotes>Please write release notes in CHANGELOG.md</PackageReleaseNotes>
     <PackageTags>dynamics;crm;365;unit testing;xrm;mock;mocking;fake;fakes;cds;common data service;power platform</PackageTags>
     <RepositoryUrl>https://github.com/DynamicsValue/fake-xrm-easy-code-activities</RepositoryUrl>
     <Configurations>Debug;Release;FAKE_XRM_EASY;FAKE_XRM_EASY_2013;FAKE_XRM_EASY_2015;FAKE_XRM_EASY_2016;FAKE_XRM_EASY_365;FAKE_XRM_EASY_9</Configurations>
@@ -131,4 +131,22 @@
   <ItemGroup>
     <Reference Include="System.Activities" />
   </ItemGroup>
+
+  <Target Name="PreparePackageReleaseNotesFromFile" BeforeTargets="GenerateNuspec">
+    <Message Text="Value of MSBuildProjectDirectory = '$(MSBuildProjectDirectory)'" />
+    <ReadLinesFromFile File="$(MSBuildProjectDirectory)/../../CHANGELOG.md" >
+      <Output TaskParameter="Lines" ItemName="ReleaseNoteLines"/>
+    </ReadLinesFromFile>
+    <Message Text="Value of Lines read = '@(ReleaseNoteLines, '%0a')'" />
+    <PropertyGroup>
+      <PackageDescription>
+FakeXrmEasy is the open source test automation framework for .net core and the Power Platform / Dataverse. This package contains helpers to unit test code activities.
+
+RELEASE NOTES
+------------------
+@(ReleaseNoteLines, '%0a')
+      </PackageDescription>
+      <PackageReleaseNotes>@(ReleaseNoteLines, '%0a')</PackageReleaseNotes>
+    </PropertyGroup>
+  </Target>
 </Project>
