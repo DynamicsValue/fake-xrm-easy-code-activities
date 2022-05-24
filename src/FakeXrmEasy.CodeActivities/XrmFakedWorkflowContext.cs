@@ -1,11 +1,25 @@
-﻿using Microsoft.Xrm.Sdk;
+﻿using FakeItEasy;
+using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Workflow;
 using System;
 
 namespace FakeXrmEasy.CodeActivities
 {
+    /// <summary>
+    /// Contains properties that can be passed to a fake code activity execution
+    /// </summary>
     public class XrmFakedWorkflowContext : IWorkflowContext
     {
+        protected readonly IServiceEndpointNotificationService _serviceEndpointNotificationService;
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public XrmFakedWorkflowContext()
+        {
+            _serviceEndpointNotificationService = A.Fake<IServiceEndpointNotificationService>();
+        }
+
         public Guid BusinessUnitId { get; set; }
 
         public Guid CorrelationId { get; set; }
@@ -65,5 +79,11 @@ namespace FakeXrmEasy.CodeActivities
 #if FAKE_XRM_EASY_2013 || FAKE_XRM_EASY_2015 || FAKE_XRM_EASY_2016 || FAKE_XRM_EASY_365 || FAKE_XRM_EASY_9
         public int WorkflowMode { get; set; }
 #endif
+
+        
+        /// <summary>
+        /// The default service endpoint notification service that will be passed to the code activity
+        /// </summary>
+        public IServiceEndpointNotificationService ServiceEndpointNotificationService => _serviceEndpointNotificationService;
     }
 }

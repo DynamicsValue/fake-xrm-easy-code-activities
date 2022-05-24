@@ -67,6 +67,7 @@ namespace FakeXrmEasy.CodeActivities
                     A.CallTo(() => fakedServiceFactory.CreateOrganizationService(A<Guid?>._)).ReturnsLazily((Guid? g) => context.GetOrganizationService());
                     return fakedServiceFactory;
                 });
+                invoker.Extensions.Add(() => wfContext.ServiceEndpointNotificationService);
 
                 debugText += "Adding extensions...ok." + Environment.NewLine;
                 debugText += "Invoking activity..." + Environment.NewLine;
