@@ -3,7 +3,7 @@
 ### Added
 
 - It is now possible to use XrmRealContext to execute a code activity for integration test purposes - https://github.com/DynamicsValue/fake-xrm-easy/issues/35
- 
+
 ## [2.2.0]
 
 ### Changed
