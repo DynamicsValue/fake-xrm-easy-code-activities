@@ -1,4 +1,5 @@
 ﻿using Crm;
+using FakeXrmEasy.Abstractions.Enums;
 using FakeXrmEasy.CodeActivities.Tests.CodeActivitiesForTesting;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,10 @@ namespace FakeXrmEasy.CodeActivities.Tests
 
         public XrmRealContextTests() : base()
         {
-            _realContext = new XrmRealContext(_service);
+            _realContext = new XrmRealContext(_service) 
+            { 
+                LicenseContext = FakeXrmEasyLicense.RPL_1_5 
+            };
 
             _account = new Account() { Id = Guid.NewGuid() };
         }
