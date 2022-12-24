@@ -9,11 +9,16 @@ using System.Collections.Generic;
 namespace FakeXrmEasy.CodeActivities
 {
     /// <summary>
-    /// Adds extensions to execute code activities against a IXrmFakedContext
+    /// Adds extensions to execute code activities against a IXrmBaseContext
     /// </summary>
-    public static class IXrmFakedContextCodeActivitiesExtensions
+    public static class IXrmBaseContextCodeActivitiesExtensions
     {
-        public static XrmFakedWorkflowContext GetDefaultWorkflowContext(this IXrmFakedContext context)
+        /// <summary>
+        /// Gets a default workflow context with default values already populated
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static XrmFakedWorkflowContext GetDefaultWorkflowContext(this IXrmBaseContext context)
         {
             var userId = context.CallerProperties?.CallerId?.Id ?? Guid.NewGuid();
             Guid businessUnitId = context.CallerProperties?.BusinessUnitId?.Id ?? Guid.NewGuid();
@@ -34,7 +39,15 @@ namespace FakeXrmEasy.CodeActivities
             };
         }
 
-        public static IDictionary<string, object> ExecuteCodeActivity<T>(this IXrmFakedContext context, Dictionary<string, object> inputs, T instance = null)
+        /// <summary>
+        /// Executes a codeactivity with a default workflow context
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="context"></param>
+        /// <param name="inputs"></param>
+        /// <param name="instance"></param>
+        /// <returns></returns>
+        public static IDictionary<string, object> ExecuteCodeActivity<T>(this IXrmBaseContext context, Dictionary<string, object> inputs, T instance = null)
             where T : CodeActivity, new()
         {
             var wfContext = context.GetDefaultWorkflowContext();
@@ -42,10 +55,10 @@ namespace FakeXrmEasy.CodeActivities
         }
 
         /// <summary>
-        /// Executes a code activity passing the primary entity
+        /// Executes a codeactivity with a custom workflow default context
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public static IDictionary<string, object> ExecuteCodeActivity<T>(this IXrmFakedContext context, XrmFakedWorkflowContext wfContext, Dictionary<string, object> inputs = null, T instance = null)
+        public static IDictionary<string, object> ExecuteCodeActivity<T>(this IXrmBaseContext context, XrmFakedWorkflowContext wfContext, Dictionary<string, object> inputs = null, T instance = null)
             where T : CodeActivity, new()
         {
             var debugText = "";
