@@ -1,3 +1,11 @@
+## [2.3.3]
+
+### Changed
+
+- Upgraded FXE dependencies to 2.3.3
+- Update legacy CRM SDK 2011 dependency to use official MS package - https://github.com/DynamicsValue/fake-xrm-easy/issues/105
+
+
 ## [2.3.0]
 
 ### Added
