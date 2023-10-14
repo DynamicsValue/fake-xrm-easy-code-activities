@@ -27,6 +27,12 @@ else
     New-Item $restoredPackagesFolder -ItemType Directory
 }
 
+Write-Host " -> Cleaning..." -ForegroundColor Yellow
+./clean.ps1 -folderPath "./src/FakeXrmEasy.CodeActivities/bin"
+./clean.ps1 -folderPath "./src/FakeXrmEasy.CodeActivities/obj"
+./clean.ps1 -folderPath "./tests/FakeXrmEasy.CodeActivities.Tests/bin"
+./clean.ps1 -folderPath "./tests/FakeXrmEasy.CodeActivities.Tests/obj"
+
 if($targetFrameworks -eq "all")
 {
     dotnet restore --no-cache --force --force-evaluate /p:Configuration=$configuration /p:PackTests=$packTests --packages $restoredPackagesFolder
