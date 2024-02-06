@@ -40,7 +40,7 @@ jobs:
         NUGET_TOKEN: ${{ secrets.PACKAGES_TOKEN }} 
 
   pack-push:
-    needs:  [build-windows, sonar]
+    needs:  [build-windows]
     runs-on: windows-latest
 
     steps:
