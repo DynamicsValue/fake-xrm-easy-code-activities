@@ -1,3 +1,9 @@
+## [2.5.0]
+
+## Changed
+
+- Update package dependencies
+
 ## [2.4.0]
 
 ## Added
