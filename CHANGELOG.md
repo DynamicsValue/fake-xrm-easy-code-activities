@@ -1,16 +1,22 @@
+## [2.6.0]
+
+### Changed
+
+- Updated dependencies to 2.6.x
+
 ## [2.5.0]
 
-## Changed
+### Changed
 
 - Update package dependencies
 
 ## [2.4.0]
 
-## Added
+### Added
 
 - **Alpha**: Introduced subscription usage monitoring based on customer feedback
 
-## Changed
+### Changed
 
 - Set default build configuration in solution file to FAKE_XRM_EASY_9
 - build.ps1 improvements: do not build project twice (added --no-build) when running dotnet test, do not build again either when packing assemblies either: https://github.com/DynamicsValue/fake-xrm-easy/issues/119
