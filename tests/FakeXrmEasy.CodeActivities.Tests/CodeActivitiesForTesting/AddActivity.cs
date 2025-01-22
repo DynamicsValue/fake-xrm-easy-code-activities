@@ -17,9 +17,6 @@ namespace FakeXrmEasy.CodeActivities.Tests.CodeActivitiesForTesting
             IOrganizationService service =
                 serviceFactory.CreateOrganizationService(context.UserId);
 
-            var tracing = (ITracingService)executionContext.GetExtension<ITracingService>();
-            tracing.Trace("{ title: \"Complex message\", description: \"That could brake Formatter if not treated carefully\" }");
-
             // Retrieve the summands and perform addition
             this.result.Set(executionContext,
                 this.firstSummand.Get(executionContext) +
