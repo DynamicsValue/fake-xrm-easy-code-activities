@@ -9,3 +9,5 @@ x
 Htests/FakeXrmEasy.CodeActivities.Tests/GetDefaultWorkflowContextTests.cs,7/7/77793613f0e27a6d27493cc6cca7cb1ee14ac064
 p
 @src/FakeXrmEasy.CodeActivities/FakeXrmEasy.CodeActivities.csproj,9/2/92d738491bbef3680f6f259ec032319fc76b77a0
+i
+9src/FakeXrmEasy.CodeActivities/XrmFakedWorkflowContext.cs,9/f/9f24d23b0df339220201f8f3dc5e9b37e72c1aca
