@@ -69,7 +69,8 @@ jobs:
       - name: Push Src
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-        run: nuget.exe push .\nupkgs\FakeXrmEasy.CodeActivities.*.nupkg -Source ${{ env.source-url }} -ApiKey "%NUGET_API_KEY%"
+        shell: powershell
+        run: nuget.exe push .\nupkgs\FakeXrmEasy.CodeActivities.*.nupkg -Source ${{ env.source-url }} -ApiKey "$env:NUGET_API_KEY"
 
 
 
