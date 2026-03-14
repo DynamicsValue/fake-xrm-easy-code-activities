@@ -2,6 +2,7 @@
 
 ### Changed
 
+- Upgrade CrmSdk package versions - https://github.com/DynamicsValue/fake-xrm-easy/issues/217
 - Increment package version for consistency with other packages and prevent downgrade package errors
 
 ## [2.6.1]
