@@ -1,4 +1,5 @@
 {
     "dotnet-test-explorer.testProjectPath": "tests/FakeXrmEasy.CodeActivities.Tests",
-    "dotnet-test-explorer.testArguments": "--framework 'net462' --configuration 'FAKE_XRM_EASY_9'"
+    "dotnet-test-explorer.testArguments": "--framework 'net462' --configuration 'FAKE_XRM_EASY_9'",
+    "sarif-viewer.connectToGithubCodeScanning": "off"
 }
