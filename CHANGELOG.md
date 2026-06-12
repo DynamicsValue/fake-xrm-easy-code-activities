@@ -1,3 +1,8 @@
+## [2.9.2]
+
+- Add .net reference assemblies - https://github.com/DynamicsValue/fake-xrm-easy/issues/249
+- Increment version
+
 ## [2.9.1]
 
 - Added net48 as the target framework along with net462 - https://github.com/DynamicsValue/fake-xrm-easy/issues/233
