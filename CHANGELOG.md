@@ -1,3 +1,9 @@
+## [2.10.0]
+
+### Changed
+
+- Increment version
+
 ## [2.9.6]
 
 ### Changed

@@ -59,14 +59,20 @@ if(!($LASTEXITCODE -eq 0)) {
     throw "Error during build step"
 }
 
-if($targetFrameworks -eq "all")
-{
-    dotnet test --configuration $configuration --no-build --verbosity normal /p:PackTests=$packTests --collect:"XPlat code coverage" --settings tests/.runsettings --results-directory ./coverage
-
+Write-Host " -> Testing: configuration='$($configuration)', targetFramework='$($targetFrameworks)' PackTests=$($packTests)" -ForegroundColor Yellow
+if($IsLinux) {
+    ./packages/xunit.runner.console/2.4.1/tools/net462/xunit.console.exe ./tests/FakeXrmEasy.Abstractions.Tests/bin/$configuration/**/FakeXrmEasy.Abstractions.Tests.dll
 }
-else 
-{
-    dotnet test --configuration $configuration --no-build --framework $targetFrameworks --verbosity normal /p:PackTests=$packTests --collect:"XPlat code coverage" --settings tests/.runsettings --results-directory ./coverage
+else {
+    if($targetFrameworks -eq "all")
+    {
+        dotnet test --configuration $configuration --no-build --verbosity normal /p:PackTests=$packTests --collect:"XPlat code coverage" --settings tests/.runsettings --results-directory ./coverage
+
+    }
+    else 
+    {
+        dotnet test --configuration $configuration --no-build --framework $targetFrameworks --verbosity normal /p:PackTests=$packTests --collect:"XPlat code coverage" --settings tests/.runsettings --results-directory ./coverage
+    }
 }
 
 if(!($LASTEXITCODE -eq 0)) {
