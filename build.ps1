@@ -61,7 +61,7 @@ if(!($LASTEXITCODE -eq 0)) {
 
 Write-Host " -> Testing: configuration='$($configuration)', targetFramework='$($targetFrameworks)' PackTests=$($packTests)" -ForegroundColor Yellow
 if($IsLinux) {
-    ./packages/xunit.runner.console/2.4.1/tools/net462/xunit.console.exe ./tests/FakeXrmEasy.Abstractions.Tests/bin/$configuration/**/FakeXrmEasy.Abstractions.Tests.dll
+    ./packages/xunit.runner.console/2.4.1/tools/net462/xunit.console.exe ./tests/FakeXrmEasy.CodeActivities.Tests/bin/$configuration/**/FakeXrmEasy.CodeActivities.Tests.dll
 }
 else {
     if($targetFrameworks -eq "all")
